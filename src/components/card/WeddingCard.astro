@@ -1,0 +1,58 @@
+---
+import CardTopPhoto from "./CardTopPhoto.astro";
+import CardCountdown from "./CardCountdown.astro";
+import CardParents from "./CardParents.astro";
+import CardNamesDate from "./CardNamesDate.astro";
+import CardLocations from "./CardLocations.astro";
+import CardItinerary from "./CardItinerary.astro";
+---
+
+<div class="card-wrapper fade-in-element">
+  <div class="wedding-card">
+    <!-- 1. Principal Top Photo with Monogram Initials -->
+    <CardTopPhoto />
+
+    <!-- 2. Integrated Countdown Timer (Debajo de la foto principal) -->
+    <CardCountdown />
+
+    <!-- 3. Intro Verse & Parents of Groom & Bride -->
+    <CardParents />
+
+    <!-- 4. Grand Calligraphy Names & Date -->
+    <CardNamesDate />
+
+    <!-- 5. Ceremony & Reception Locations with Google Maps -->
+    <CardLocations />
+
+    <!-- 6. Activities Itinerary -->
+    <CardItinerary />
+  </div>
+</div>
+
+<style>
+  .card-wrapper {
+    max-width: 520px;
+    margin: 30px auto;
+    padding: 0 16px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .wedding-card {
+    background: #faf7f2;
+    border: 1px solid #e5dec9;
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.08),
+      0 2px 10px rgba(158, 90, 103, 0.05);
+    position: relative;
+    padding: 50px 30px 40px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  @media (max-width: 480px) {
+    .wedding-card {
+      padding: 40px 18px 30px;
+    }
+  }
+</style>

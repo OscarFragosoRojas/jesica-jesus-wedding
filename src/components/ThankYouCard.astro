@@ -1,0 +1,197 @@
+---
+// ThankYouCard: Carta de Agradecimiento featuring the close-up portrait photo
+---
+
+<section class="thank-you-section fade-in-element">
+  <div class="thank-you-container">
+    <div class="botanical-top-icon">
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+      >
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        ></path>
+      </svg>
+    </div>
+
+    <span class="sub-heading">MENSAJE ESPECIAL</span>
+    <h2 class="main-heading">Nuestra Gratitud</h2>
+
+    <div class="gold-divider">
+      <div class="gold-divider-diamond"></div>
+    </div>
+
+    <!-- Close-up Portrait Photo Frame -->
+    <div class="portrait-photo-wrapper">
+      <div class="portrait-frame">
+        <img
+          src="/images/portrait_couple.jpg"
+          alt="Jesús Galicia Galicia & Jesica Saray Chavarría Vázquez"
+          class="portrait-img"
+        />
+      </div>
+    </div>
+
+    <div class="letter-content">
+      <p class="letter-greeting">A nuestras queridas familias y amigos:</p>
+
+      <p class="letter-body">
+        Hoy iniciamos el capítulo más hermoso de nuestras vidas y no podemos
+        imaginar este día sin la presencia de las personas que han llenado
+        nuestros corazones de amor, sabiduría y momentos inolvidables.
+      </p>
+
+      <p class="letter-body">
+        Cada risa compartida, cada consejo en el camino y cada muestra de cariño
+        han dejado una huella profunda en nosotros. Gracias por acompañarnos,
+        por ser testigos de nuestro amor y por celebrar el comienzo de nuestra
+        nueva familia.
+      </p>
+
+      <div class="signature-block">
+        <span class="signature-tag">Con todo nuestro amor y gratitud,</span>
+        <h3 class="signature-names">Jesús & Jesica Saray</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .thank-you-section {
+    padding: 20px 16px 50px;
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .thank-you-container {
+    padding: 36px 24px;
+    text-align: center;
+    background: #faf7f2;
+    border: 1px solid #e5dec9;
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  }
+
+  .botanical-top-icon {
+    color: var(--color-wine);
+    margin-bottom: 4px;
+  }
+
+  .sub-heading {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: var(--color-wine-dark);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .main-heading {
+    font-family: var(--font-script);
+    font-size: 3.2rem;
+    color: var(--color-wine-dark);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+
+  /* Close-up Portrait Frame */
+  .portrait-photo-wrapper {
+    max-width: 320px;
+    margin: 20px auto 24px;
+    padding: 6px;
+    border: 1px dashed var(--color-wine-pastel);
+    border-radius: 160px 160px 20px 20px;
+  }
+
+  .portrait-frame {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: 154px 154px 16px 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(158, 90, 103, 0.15);
+  }
+
+  .portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+  }
+
+  .letter-content {
+    margin: 20px 0 28px;
+    text-align: center;
+  }
+
+  .letter-greeting {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #2d2523;
+    margin-bottom: 14px;
+  }
+
+  .letter-body {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .signature-block {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px stroke var(--color-wine-pastel);
+  }
+
+  .signature-tag {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-wine);
+  }
+
+  .signature-names {
+    font-family: var(--font-script);
+    font-size: 2.4rem;
+    color: var(--color-wine-dark);
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  .wishes-action {
+    margin-top: 16px;
+  }
+
+  .wishes-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #25d366;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .wishes-btn:hover {
+    background: #1ebe5b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.3);
+  }
+</style>

@@ -1,0 +1,155 @@
+---
+// CardCountdown: Integrated real-time countdown timer with soft pastel wine & cream colors
+---
+
+<div class="card-countdown-container">
+  <span class="countdown-subheading">FALTAN PARA EL GRAN DÍA</span>
+
+  <div class="timer-grid">
+    <div class="timer-box">
+      <span id="days" class="timer-number">00</span>
+      <span class="timer-label">DÍAS</span>
+    </div>
+    <div class="timer-colon">:</div>
+    <div class="timer-box">
+      <span id="hours" class="timer-number">00</span>
+      <span class="timer-label">HORAS</span>
+    </div>
+    <div class="timer-colon">:</div>
+    <div class="timer-box">
+      <span id="minutes" class="timer-number">00</span>
+      <span class="timer-label">MINUTOS</span>
+    </div>
+    <div class="timer-colon">:</div>
+    <div class="timer-box">
+      <span id="seconds" class="timer-number">00</span>
+      <span class="timer-label">SEGUNDOS</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card-countdown-container {
+    margin: 20px auto 26px;
+    padding: 18px 16px;
+    background: radial-gradient(circle at center, #FAF4F5 0%, #F5EAEB 100%);
+    border: 1px solid var(--color-wine-pastel);
+    border-radius: var(--radius-md);
+    text-align: center;
+    max-width: 420px;
+  }
+
+  .countdown-subheading {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 3px;
+    color: var(--color-wine-dark);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .timer-grid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .timer-box {
+    background: #FFFFFF;
+    border: 1px solid #E8D3D7;
+    border-radius: var(--radius-sm);
+    padding: 8px 6px;
+    min-width: 66px;
+    box-shadow: 0 2px 8px rgba(158, 90, 103, 0.06);
+    transition: transform 0.3s ease;
+  }
+
+  .timer-box:hover {
+    transform: translateY(-2px);
+  }
+
+  .timer-number {
+    font-family: var(--font-serif);
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--color-wine-dark);
+    display: block;
+    line-height: 1;
+  }
+
+  .timer-label {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
+    color: var(--color-text-muted);
+    margin-top: 4px;
+    display: block;
+    font-weight: 500;
+  }
+
+  .timer-colon {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-wine-pastel);
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 480px) {
+    .timer-grid {
+      gap: 5px;
+    }
+    .timer-box {
+      min-width: 56px;
+      padding: 8px 4px;
+    }
+    .timer-number {
+      font-size: 1.35rem;
+    }
+  }
+</style>
+
+<script>
+  function startCountdown() {
+    const targetDate = new Date("2026-12-19T16:00:00").getTime();
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+    function update() {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference <= 0) {
+        daysEl.innerText = "00";
+        hoursEl.innerText = "00";
+        minutesEl.innerText = "00";
+        secondsEl.innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      daysEl.innerText = String(days).padStart(2, "0");
+      hoursEl.innerText = String(hours).padStart(2, "0");
+      minutesEl.innerText = String(minutes).padStart(2, "0");
+      secondsEl.innerText = String(seconds).padStart(2, "0");
+    }
+
+    update();
+    setInterval(update, 1000);
+  }
+
+  document.addEventListener("DOMContentLoaded", startCountdown);
+</script>

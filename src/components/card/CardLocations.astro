@@ -1,0 +1,179 @@
+---
+// CardLocations: Ceremonia Religiosa & Recepción with embedded Google Maps & location action buttons
+---
+
+<div class="location-section">
+  <!-- Ceremonia Religiosa -->
+  <div class="event-block">
+    <span class="event-time">13:45 HRS</span>
+    <h3 class="event-title">CEREMONIA RELIGIOSA</h3>
+    <p class="venue-title">IGLESIA SAN MIGUEL COATLINCHÁN</p>
+    <p class="venue-address">
+      Av. Insurgentes 43<br />San Miguel Coatlinchán, Texcoco, Edo. Méx.
+    </p>
+
+    <!-- Embedded Google Maps Frame -->
+    <div class="map-frame-wrapper">
+      <iframe
+        title="Ubicación Parroquia de San Miguel Arcángel"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3050.1530848954176!2d-98.8728721044819!3d19.44940972471015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1e72c449bf4a3%3A0x284ee589b6a6833b!2sIglesia%20San%20Miguel%20Coatlinch%C3%A1n%2C%20C.%20Insurgentes!5e0!3m2!1ses!2smx!4v1791323183659!5m2!1ses!2smx"
+        class="embedded-map-iframe"
+        loading="lazy"
+        allowfullscreen></iframe>
+    </div>
+
+    <a
+      href="https://maps.app.goo.gl/cfxG8vpJM9oJ5LFe8"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="location-btn"
+    >
+      <span>ABRIR EN GOOGLE MAPS</span>
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+        ></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </a>
+  </div>
+
+  <div class="heart-divider-sm">♥</div>
+
+  <!-- Recepción -->
+  <div class="event-block">
+    <span class="event-time">18:30 HRS</span>
+    <h3 class="event-title">RECEPCIÓN</h3>
+    <p class="venue-title">HACIENDA SAN JOSÉ COATLINCHÁN</p>
+    <p class="venue-address">
+      Camino Real s/n, Coatlinchán<br />Texcoco, Estado de México.
+    </p>
+
+    <!-- Embedded Google Maps Frame -->
+    <div class="map-frame-wrapper">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.2139174505587!2d-98.8678027!3d19.446341699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1e0cce768109f%3A0x485ca2eb83eb2dba!2sSalon%20De%20Fiestas%20Diamante!5e0!3m2!1ses!2smx!4v1791323461940!5m2!1ses!2smx"
+        class="embedded-map-iframe"
+        loading="lazy"
+        allowfullscreen></iframe>
+    </div>
+
+    <a
+      href="https://maps.app.goo.gl/eZ3gNnNKxEr85CAN6"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="location-btn"
+    >
+      <span>ABRIR EN GOOGLE MAPS</span>
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+        ></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<style>
+  .location-section {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  .event-block {
+    margin-bottom: 28px;
+  }
+
+  .event-time {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    color: var(--color-wine);
+    font-weight: 600;
+  }
+
+  .event-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    letter-spacing: 3px;
+    color: #2d2523;
+    margin: 6px 0;
+    font-weight: 600;
+  }
+
+  .venue-title {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-wine-dark);
+    font-weight: 600;
+  }
+
+  .venue-address {
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 8px 0 16px;
+  }
+
+  /* Embedded Map Frame Styling */
+  .map-frame-wrapper {
+    width: 100%;
+    height: 200px;
+    margin: 14px 0 18px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-wine-pastel);
+    box-shadow: 0 4px 14px rgba(158, 90, 103, 0.1);
+    background: #faf7f2;
+  }
+
+  .embedded-map-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .location-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #333333;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .location-btn:hover {
+    background: var(--color-wine-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  .heart-divider-sm {
+    color: var(--color-wine-pastel);
+    font-size: 0.75rem;
+    margin: 24px 0;
+  }
+</style>

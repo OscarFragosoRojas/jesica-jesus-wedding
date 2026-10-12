@@ -1,0 +1,33 @@
+---
+// Global Toast Notification Component
+---
+
+<div id="global-toast" class="toast-notification"></div>
+
+<style>
+  .toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(40px);
+    background: radial-gradient(circle at center, #6B1D2F 0%, #4A121F 100%);
+    color: var(--color-gold-light);
+    border: 1px solid var(--color-gold);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 10000;
+  }
+
+  .toast-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+</style>

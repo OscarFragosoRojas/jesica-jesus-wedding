@@ -1,0 +1,119 @@
+/* Global Design System & Variables - Pastel Wine & Eucalyptus Leaf Theme */
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+  /* Pastel Wine / Dusty Rose Palette */
+  --color-wine: #9E5A67;
+  --color-wine-dark: #7A3E4A;
+  --color-wine-light: #B87380;
+  --color-wine-pastel: #D6A5AE;
+  --color-wine-bg: #F7ECEF;
+
+  /* Eucalyptus & Sage Green Accents */
+  --color-sage: #6B7C68;
+  --color-sage-light: #A3B2A0;
+  --color-sage-soft: #E8EEE7;
+
+  /* Gold & Warm Tones */
+  --color-gold: #C2A15D;
+  --color-gold-light: #F4E8CE;
+  --color-gold-dark: #8F7236;
+
+  /* Parchment Backgrounds */
+  --color-parchment: #F9F6F0;
+  --color-parchment-card: #FAF8F3;
+  --color-text-dark: #333333;
+  --color-text-muted: #666666;
+  --color-white: #FFFFFF;
+
+  /* Fonts */
+  --font-script: 'Great Vibes', 'Alex Brush', cursive;
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Montserrat', sans-serif;
+
+  --shadow-sm: 0 4px 12px rgba(158, 90, 103, 0.08);
+  --shadow-md: 0 10px 30px rgba(158, 90, 103, 0.12);
+  --shadow-lg: 0 20px 40px rgba(158, 90, 103, 0.16);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-body);
+  background-color: #ECE7E1;
+  color: var(--color-text-dark);
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, #FAF7F2 0%, #ECE7E1 100%);
+  overflow-x: hidden;
+}
+
+/* Scroll Fade Animations */
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in-element.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Botanical Decorative Dividers */
+.gold-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px auto;
+  width: 100%;
+  max-width: 220px;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-wine-pastel), transparent);
+}
+
+.gold-divider-diamond {
+  width: 6px;
+  height: 6px;
+  background: var(--color-wine);
+  transform: rotate(45deg);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F4EFEA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-wine-pastel);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-wine);
+}

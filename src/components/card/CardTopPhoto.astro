@@ -1,0 +1,138 @@
+---
+// CardTopPhoto: Main Principal Image at the top with Monogram Initials overlay
+---
+
+<div class="card-top-photo-section">
+  <!-- Monogram Initials gracefully placed over/above the photo -->
+  <div class="photo-container">
+    <img
+      src="/images/beach_couple.jpg"
+      alt="Jesús & Jesica Saray en la playa"
+      class="principal-photo"
+    />
+
+    <!-- Gradient overlay for subtle contrast -->
+    <div class="photo-overlay"></div>
+
+    <!-- Floating Monogram Badge -->
+    <div class="monogram-overlay-badge">
+      <h1 class="monogram-initials">
+        J <span class="monogram-bar">|</span> JS
+      </h1>
+      <span class="monogram-tagline">NUESTRA BODA</span>
+    </div>
+
+    <!-- Torn paper deckled edge at bottom -->
+    <div class="torn-edge bottom-torn"></div>
+  </div>
+</div>
+
+<style>
+  .card-top-photo-section {
+    width: calc(100% + 60px);
+    margin: -50px -30px 24px -30px;
+    position: relative;
+  }
+
+  .photo-container {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+  }
+
+  .principal-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 65%;
+    display: block;
+  }
+
+  .photo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(45, 20, 25, 0.45) 0%,
+      transparent 45%,
+      rgba(45, 20, 25, 0.2) 100%
+    );
+    pointer-events: none;
+  }
+
+  /* Monogram Overlay Badge */
+  .monogram-overlay-badge {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--color-wine-pastel);
+    padding: 10px 24px;
+    border-radius: 40px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    white-space: nowrap;
+    z-index: 4;
+  }
+
+  .monogram-initials {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--color-wine-dark);
+    letter-spacing: 5px;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .monogram-bar {
+    color: #8f9e8b;
+    font-weight: 200;
+    margin: 0 4px;
+  }
+
+  .monogram-tagline {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    color: var(--color-wine);
+    display: block;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+
+  .torn-edge {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 18px;
+    background-repeat: repeat-x;
+    background-size: 30px 18px;
+    z-index: 3;
+  }
+
+  .bottom-torn {
+    bottom: -1px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18'%3E%3Cpath fill='%23FAF7F2' d='M0 18 h30 v-18 Q20 14 15 6 Q5 16 0 0 Z'/%3E%3C/svg%3E");
+  }
+
+  @media (max-width: 480px) {
+    .card-top-photo-section {
+      margin: -40px -18px 20px -18px;
+      width: calc(100% + 36px);
+    }
+    .photo-container {
+      height: 380px;
+    }
+    .monogram-initials {
+      font-size: 1.5rem;
+    }
+  }
+</style>

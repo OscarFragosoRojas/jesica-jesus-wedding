@@ -1,23 +1,69 @@
+---
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Invitación de Boda | Jesús Galicia Galicia & Jesica Saray Chavarría Vázquez",
+	description = "Te invitamos cordialmente a celebrar nuestro enlace matrimonial. Sábado 19 de Diciembre de 2026.",
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+
+		<!-- Primary SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+
+		<!-- Open Graph / Facebook / WhatsApp -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="/images/couple.jpg" />
+
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
 	</head>
 	<body>
 		<slot />
+
+		<script>
+			// Intersection Observer for Smooth Scroll Fade-In Animations
+			function setupScrollAnimations() {
+				const observerOptions = {
+					root: null,
+					rootMargin: "0px 0px -50px 0px",
+					threshold: 0.15,
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("is-visible");
+						}
+					});
+				}, observerOptions);
+
+				document.querySelectorAll(".fade-in-element").forEach((el) => {
+					observer.observe(el);
+				});
+			}
+
+			document.addEventListener(
+				"DOMContentLoaded",
+				setupScrollAnimations,
+			);
+			document.addEventListener("envelopeOpened", () => {
+				setTimeout(setupScrollAnimations, 100);
+			});
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
