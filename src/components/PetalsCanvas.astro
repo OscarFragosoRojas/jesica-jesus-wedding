@@ -1,5 +1,6 @@
 ---
 // Botanical Eucalyptus Leaves & Pastel Rose Petals floating canvas animation
+// Optimized for mobile: frames the edges gracefully without invading the card content
 ---
 
 <canvas id="petals-canvas" class="petals-canvas"></canvas>
@@ -12,24 +13,21 @@
     width: 100vw;
     height: 100vh;
     pointer-events: none;
-    z-index: 1;
+    z-index: 10;
   }
 </style>
 
 <script>
   function initPetals() {
-    const canvas = document.getElementById('petals-canvas') as HTMLCanvasElement;
+    const canvas = document.getElementById(
+      "petals-canvas",
+    ) as HTMLCanvasElement;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
-
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-    });
 
     interface Leaf {
       x: number;
@@ -42,44 +40,112 @@
       rotationSpeed: number;
       color: string;
       isLeaf: boolean;
+      lane: "left" | "right" | "center" | "free";
     }
-
-    const leaves: Leaf[] = [];
-    const leafCount = 32;
 
     const colors = [
-      'rgba(107, 124, 104, 0.45)', // Eucalyptus Sage
-      'rgba(163, 178, 160, 0.55)', // Light Sage
-      'rgba(158, 90, 103, 0.35)',  // Pastel Wine
-      'rgba(214, 165, 174, 0.45)'  // Dusty Rose
+      "rgba(107, 124, 104, 0.45)", // Eucalyptus Sage
+      "rgba(163, 178, 160, 0.50)", // Light Sage
+      "rgba(158, 90, 103, 0.35)", // Pastel Wine
+      "rgba(214, 165, 174, 0.40)", // Dusty Rose
     ];
 
-    for (let i = 0; i < leafCount; i++) {
-      leaves.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 10 + 5,
-        speedY: Math.random() * 0.7 + 0.3,
-        speedX: (Math.random() - 0.5) * 0.5,
-        opacity: Math.random() * 0.6 + 0.3,
-        rotation: Math.random() * 360,
-        rotationSpeed: (Math.random() - 0.5) * 1.2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        isLeaf: Math.random() > 0.3
-      });
+    function isMobile() {
+      return window.innerWidth <= 640;
     }
+
+    function createLeaf(initialY?: number): Leaf {
+      const mobile = isMobile();
+      let lane: "left" | "right" | "center" | "free" = "free";
+      let x = 0;
+      let opacity = 0;
+
+      if (mobile) {
+        // En móvil: 80%+ en los bordes laterales para enmarcar la tarjeta
+        const roll = Math.random();
+        if (roll < 0.42) {
+          lane = "left";
+          x = Math.random() * (width * 0.22);
+          opacity = Math.random() * 0.35 + 0.25;
+        } else if (roll < 0.84) {
+          lane = "right";
+          x = width * 0.78 + Math.random() * (width * 0.22);
+          opacity = Math.random() * 0.35 + 0.25;
+        } else {
+          lane = "center";
+          x = width * 0.22 + Math.random() * (width * 0.56);
+          // Al centro son mucho más traslúcidas para no interferir con el texto
+          opacity = Math.random() * 0.18 + 0.12;
+        }
+      } else {
+        x = Math.random() * width;
+        opacity = Math.random() * 0.5 + 0.25;
+      }
+
+      return {
+        x,
+        y: initialY !== undefined ? initialY : Math.random() * height,
+        size: mobile ? Math.random() * 5 + 3.5 : Math.random() * 9 + 5,
+        speedY: mobile
+          ? Math.random() * 0.45 + 0.22
+          : Math.random() * 0.65 + 0.3,
+        speedX: mobile
+          ? (Math.random() - 0.5) * 0.25
+          : (Math.random() - 0.5) * 0.45,
+        opacity,
+        rotation: Math.random() * 360,
+        rotationSpeed: (Math.random() - 0.5) * 1.1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        isLeaf: Math.random() > 0.35,
+        lane,
+      };
+    }
+
+    let leaves: Leaf[] = [];
+
+    function setupLeaves() {
+      const targetCount = isMobile() ? 16 : 28;
+      leaves = [];
+      for (let i = 0; i < targetCount; i++) {
+        leaves.push(createLeaf());
+      }
+    }
+
+    setupLeaves();
+
+    let resizeTimer: number;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        setupLeaves();
+      }, 150);
+    });
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
 
+      const mobile = isMobile();
+
       leaves.forEach((p) => {
         p.y += p.speedY;
-        p.x += Math.sin(p.y * 0.01) * p.speedX;
+        p.x += Math.sin(p.y * 0.012) * p.speedX;
         p.rotation += p.rotationSpeed;
 
+        // Si sobrepasa la parte inferior, reaparece suavemente arriba
         if (p.y > height + 20) {
-          p.y = -20;
-          p.x = Math.random() * width;
+          const newLeaf = createLeaf(-20);
+          Object.assign(p, newLeaf);
+        }
+
+        // Mantener dentro de los bordes laterales en móvil si pertenece a carril
+        if (mobile) {
+          if (p.lane === "left" && p.x > width * 0.25) {
+            p.x = width * 0.25;
+          } else if (p.lane === "right" && p.x < width * 0.75) {
+            p.x = width * 0.75;
+          }
         }
 
         ctx.save();
@@ -89,22 +155,36 @@
 
         ctx.beginPath();
         if (p.isLeaf) {
-          // Draw delicate eucalyptus leaf shape
+          // Hoja de eucalipto fina y estilizada
           ctx.moveTo(0, -p.size);
-          ctx.bezierCurveTo(p.size * 0.6, -p.size * 0.3, p.size * 0.6, p.size * 0.3, 0, p.size);
-          ctx.bezierCurveTo(-p.size * 0.6, p.size * 0.3, -p.size * 0.6, -p.size * 0.3, 0, -p.size);
+          ctx.bezierCurveTo(
+            p.size * 0.55,
+            -p.size * 0.25,
+            p.size * 0.55,
+            p.size * 0.25,
+            0,
+            p.size,
+          );
+          ctx.bezierCurveTo(
+            -p.size * 0.55,
+            p.size * 0.25,
+            -p.size * 0.55,
+            -p.size * 0.25,
+            0,
+            -p.size,
+          );
           ctx.fillStyle = p.color;
           ctx.fill();
 
-          // Leaf vein line
+          // Nervadura de la hoja
           ctx.beginPath();
-          ctx.moveTo(0, -p.size * 0.8);
-          ctx.lineTo(0, p.size * 0.8);
-          ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
-          ctx.lineWidth = 0.8;
+          ctx.moveTo(0, -p.size * 0.75);
+          ctx.lineTo(0, p.size * 0.75);
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.45)";
+          ctx.lineWidth = 0.7;
           ctx.stroke();
         } else {
-          // Soft petal shape
+          // Pétalo sutil
           ctx.arc(0, 0, p.size / 2, 0, Math.PI * 2);
           ctx.fillStyle = p.color;
           ctx.fill();
@@ -119,5 +199,9 @@
     animate();
   }
 
-  document.addEventListener('DOMContentLoaded', initPetals);
+  document.addEventListener("DOMContentLoaded", initPetals);
+  document.addEventListener("envelopeOpened", () => {
+    // Al abrir el sobre se asegura la sincronización del canvas
+    setTimeout(initPetals, 50);
+  });
 </script>

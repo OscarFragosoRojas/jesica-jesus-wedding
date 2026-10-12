@@ -1,9 +1,8 @@
 ---
-// CardTopPhoto: Main Principal Image at the top with Monogram Initials overlay
+// CardTopPhoto: Clean photo with NUESTRA BODA pill, simple J | S initials, deep gradient fade & scroll cue
 ---
 
 <div class="card-top-photo-section">
-  <!-- Monogram Initials gracefully placed over/above the photo -->
   <div class="photo-container">
     <img
       src="/images/beach_couple.jpg"
@@ -11,33 +10,43 @@
       class="principal-photo"
     />
 
-    <!-- Gradient overlay for subtle contrast -->
-    <div class="photo-overlay"></div>
+    <!-- Subtle contrast scrim at top for pristine text legibility -->
+    <div class="photo-scrim-top"></div>
 
-    <!-- Floating Monogram Badge -->
-    <div class="monogram-overlay-badge">
-      <h1 class="monogram-initials">
-        J <span class="monogram-bar">|</span> JS
-      </h1>
-      <span class="monogram-tagline">NUESTRA BODA</span>
+    <!-- Soft, deep gradual gradient at bottom seamlessly melting into the card -->
+    <div class="photo-gradient-fade"></div>
+
+    <!-- Top Overlay: NUESTRA BODA pill + simple J | S monogram -->
+    <div class="photo-overlay-content">
+      <div class="hero-pill-badge">
+        <span class="pill-heart">🤍</span>
+        <span class="pill-text">NUESTRA BODA</span>
+        <span class="pill-heart">🤍</span>
+      </div>
+      <h1 class="monogram-simple">J <span class="monogram-divider">|</span> S</h1>
     </div>
 
-    <!-- Torn paper deckled edge at bottom -->
-    <div class="torn-edge bottom-torn"></div>
+    <!-- Subtle scroll cue at the bottom of the gradient fade -->
+    <div class="scroll-cue">
+      <span class="scroll-cue-text">DESLIZA PARA VER MÁS</span>
+      <svg class="scroll-cue-arrow" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4">
+        <path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </div>
   </div>
 </div>
 
 <style>
   .card-top-photo-section {
     width: calc(100% + 60px);
-    margin: -50px -30px 24px -30px;
+    margin: -50px -30px 10px -30px;
     position: relative;
   }
 
   .photo-container {
     position: relative;
     width: 100%;
-    height: 420px;
+    height: 460px;
     overflow: hidden;
   }
 
@@ -45,94 +54,214 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 65%;
+    object-position: center 46%;
     display: block;
+    transform: scale(1.01);
   }
 
-  .photo-overlay {
+  /* Shimmer light effect when invitation opens */
+  .photo-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 100%
+    );
+    transform: skewX(-22deg);
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  :global(.card-revealed) .photo-container::after {
+    animation: photoSheen 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s forwards;
+  }
+
+  @keyframes photoSheen {
+    0% {
+      left: -120%;
+    }
+    100% {
+      left: 220%;
+    }
+  }
+
+  /* Scrim on top so white text is easily readable over the sky */
+  .photo-scrim-top {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: 48%;
     background: linear-gradient(
       180deg,
-      rgba(45, 20, 25, 0.45) 0%,
-      transparent 45%,
-      rgba(45, 20, 25, 0.2) 100%
+      rgba(35, 14, 18, 0.48) 0%,
+      rgba(35, 14, 18, 0.20) 45%,
+      transparent 100%
     );
     pointer-events: none;
+    z-index: 1;
   }
 
-  /* Monogram Overlay Badge */
-  .monogram-overlay-badge {
+  /* The smooth gradient fade melting seamlessly into the card (#FAF7F2) */
+  .photo-gradient-fade {
     position: absolute;
-    top: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: rgba(250, 247, 242, 0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid var(--color-wine-pastel);
-    padding: 10px 24px;
-    border-radius: 40px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    white-space: nowrap;
-    z-index: 4;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 240px;
+    background: linear-gradient(
+      180deg,
+      rgba(250, 247, 242, 0) 0%,
+      rgba(250, 247, 242, 0.10) 25%,
+      rgba(250, 247, 242, 0.38) 50%,
+      rgba(250, 247, 242, 0.78) 75%,
+      rgba(250, 247, 242, 0.96) 90%,
+      #FAF7F2 100%
+    );
+    pointer-events: none;
+    z-index: 2;
   }
 
-  .monogram-initials {
+  .photo-overlay-content {
+    position: absolute;
+    top: 26px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 3;
+    text-align: center;
+    padding: 0 16px;
+  }
+
+  /* Clean NUESTRA BODA pill badge matching reference */
+  .hero-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.22);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    letter-spacing: 2.5px;
+    color: #FFFFFF;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    margin-bottom: 10px;
+  }
+
+  .pill-heart {
+    font-size: 0.62rem;
+    opacity: 0.9;
+    display: inline-block;
+    line-height: 1;
+  }
+
+  .pill-text {
+    display: inline-block;
+    line-height: 1;
+  }
+
+  /* J | S sencillos y elegantes */
+  .monogram-simple {
     font-family: var(--font-serif);
-    font-size: 1.8rem;
+    font-size: 3rem;
     font-weight: 300;
-    color: var(--color-wine-dark);
-    letter-spacing: 5px;
+    color: #FFFFFF;
+    letter-spacing: 8px;
     line-height: 1;
     margin: 0;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.55);
   }
 
-  .monogram-bar {
-    color: #8f9e8b;
+  .monogram-divider {
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 200;
     margin: 0 4px;
   }
 
-  .monogram-tagline {
+  /* Subtle scroll cue indicator at the bottom of the gradient */
+  .scroll-cue {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    z-index: 3;
+    pointer-events: none;
+    color: #8C7677;
+    opacity: 0.85;
+    animation: cueBounce 2.5s ease-in-out infinite;
+  }
+
+  .scroll-cue-text {
     font-family: var(--font-heading);
-    font-size: 0.65rem;
-    letter-spacing: 4px;
-    color: var(--color-wine);
-    display: block;
-    margin-top: 4px;
+    font-size: 0.58rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
     font-weight: 600;
   }
 
-  .torn-edge {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 18px;
-    background-repeat: repeat-x;
-    background-size: 30px 18px;
-    z-index: 3;
+  .scroll-cue-arrow {
+    stroke: currentColor;
+    opacity: 0.85;
   }
 
-  .bottom-torn {
-    bottom: -1px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 18'%3E%3Cpath fill='%23FAF7F2' d='M0 18 h30 v-18 Q20 14 15 6 Q5 16 0 0 Z'/%3E%3C/svg%3E");
+  @keyframes cueBounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
+    }
   }
 
   @media (max-width: 480px) {
     .card-top-photo-section {
-      margin: -40px -18px 20px -18px;
-      width: calc(100% + 36px);
+      margin: -36px -14px 10px -14px;
+      width: calc(100% + 28px);
     }
     .photo-container {
-      height: 380px;
+      height: 420px;
     }
-    .monogram-initials {
-      font-size: 1.5rem;
+    .photo-overlay-content {
+      top: 20px;
+    }
+    .hero-pill-badge {
+      font-size: 0.58rem;
+      letter-spacing: 2.2px;
+      padding: 5px 14px;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .monogram-simple {
+      font-size: 2.5rem;
+      letter-spacing: 6px;
+    }
+    .photo-gradient-fade {
+      height: 200px;
+    }
+    .scroll-cue {
+      bottom: 12px;
+    }
+    .scroll-cue-text {
+      font-size: 0.52rem;
+      letter-spacing: 2.4px;
     }
   }
 </style>

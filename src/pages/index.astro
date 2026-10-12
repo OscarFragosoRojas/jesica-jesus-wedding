@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import EnvelopeModal from "../components/EnvelopeModal.astro";
 import PetalsCanvas from "../components/PetalsCanvas.astro";
-import AudioPlayer from "../components/AudioPlayer.astro";
+// import AudioPlayer from "../components/AudioPlayer.astro";
 import WeddingCard from "../components/card/WeddingCard.astro";
 import ThankYouCard from "../components/ThankYouCard.astro";
 import Footer from "../components/Footer.astro";
@@ -15,8 +15,8 @@ import Footer from "../components/Footer.astro";
 	<!-- Dynamic Background Eucalyptus Leaves & Petals Canvas -->
 	<PetalsCanvas />
 
-	<!-- Floating Audio Player -->
-	<AudioPlayer />
+	<!-- Floating Audio Player (Comentado temporalmente por petición del usuario) -->
+	{/* <AudioPlayer /> */}
 
 	<!-- Main Page Content -->
 	<main class="invitation-main">
@@ -36,6 +36,6 @@ import Footer from "../components/Footer.astro";
 		position: relative;
 		z-index: 2;
 		overflow-x: hidden;
-		padding-top: 20px;
+		padding-top: 0;
 	}
 </style>
